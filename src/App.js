@@ -1,5 +1,5 @@
-import "./styles.css";
-import Timer from "./Components/Timer";
+import "./App.css";
+import Timer from "./components/Timer";
 
 function App() {
   const hoursMinSecs = { hours: 0, minutes: 0, seconds: 5 };
