@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 const Timer = ({ hoursMinSecs }) => {
   let { hours, minutes, seconds } = hoursMinSecs;
   const [pause, setPause] = useState(false);
-  const [music, setMusic] = useState(false);
   const [minute, setMinute] = useState(minutes);
   const [percentage, setPercentage] = useState(0);
 
@@ -24,29 +23,26 @@ const Timer = ({ hoursMinSecs }) => {
     let timeRemaining = +hrs * 3600 + +mins * 60 + +secs;
     let newPercentage = ((totalTime - timeRemaining) / totalTime) * 100;
     setPercentage(newPercentage);
-    if (newPercentage === 100) {
-      playMusic();
-    }
-    //console.log(percentage);
+    // if (newPercentage === 100) {
+    //   playMusic();
+    // }
   };
 
   const reset = () => {
     setTime([+hours, +minutes, +seconds]);
-    
+    setMinute(+minutes);
     setPause(true);
   };
 
   const addMin = () => {
     setTime([hrs, mins + 1, secs]);
     setMinute(minute + 1);
-    // console.log(minute);
   };
 
-  const playMusic = () => {
-    setMusic(true);
-    const audioEl = document.getElementsByClassName("audio-element")[0];
-    audioEl.play();
-  };
+  // const playMusic = () => {
+  //   const audioEl = document.getElementsByClassName("audio-element")[0];
+  //   audioEl.play();
+  // };
 
   useEffect(() => {
     var timerId;
@@ -56,8 +52,6 @@ const Timer = ({ hoursMinSecs }) => {
       }, 1000);
 
       trackProgress();
-      // let timeRemaining = hrs * 3600 + mins * 60 + secs;
-      // console.log(timeRemaining);
     }
 
     return () => clearInterval(timerId);
@@ -66,9 +60,9 @@ const Timer = ({ hoursMinSecs }) => {
   return (
     <div className="base">
       <div className="container">
-        <audio className="audio-element">
+        {/* <audio className="audio-element">
           <source src="http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3" />
-        </audio>
+        </audio> */}
         <div
           className="circular-progress"
           style={{
